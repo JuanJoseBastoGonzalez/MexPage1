@@ -1,4 +1,4 @@
-$colors: (
+  $colors: (
   'primary': #6a11cb,
   'secondary': #2575fc,
   'success': #00c853,
@@ -22,20 +22,20 @@ $colors: (
   'shadow-color': hsla(267, 100%, 55%, 0.09)
 );
 
-// Shadow effects
+// Variables de efectos
 $shadow-values: (
   'soft': 0 1rem 3rem rgba(0, 0, 0, 0.2),
   'inset': inset 0 2px 4px rgba(0, 0, 0, 0.1),
   'text': 1px 1px 4px rgba(0, 0, 0, 0.6)
 );
 
-// Animation durations
+// Variables de animación
 $transitions: (
   'standard': 0.3s ease,
   'long': 1.5s
 );
 
-// Spacing variables
+// Variables de espaciado
 $spacing: (
   'xs': 0.5rem,
   'sm': 1rem,
@@ -43,7 +43,7 @@ $spacing: (
   'lg': 2rem
 );
 
-// Size variables
+// Variables de tamaño
 $sizes: (
   'login-container-width': 26rem,
   'login-container-height': 60vh,
@@ -60,7 +60,7 @@ $sizes: (
   'border-radius-small': 4px
 );
 
-// Utility mixins
+// Mixins útiles
 @mixin flex-center {
   display: flex;
   justify-content: center;
@@ -75,7 +75,7 @@ $sizes: (
     0 0 40px $color4;
 }
 
-// Animation keyframes
+// Animaciones
 @mixin keyframes($name) {
   @keyframes #{$name} {
     @content;
@@ -124,36 +124,34 @@ $sizes: (
   }
 }
 
-// Root styles
+// Estilos base
 :root {
   --bg-clr: #{map-get($colors, 'background-dark')};
   --txt-clr: #{map-get($colors, 'white')};
 }
 
-// Grid mixin
 @mixin login-grid($columns, $justify) {
   display: grid;
   grid-template-columns: $columns;
   justify-content: $justify;
 }
 
-// Login container styles
 .login {
   @include login-grid(70% 30%, center);
   height: map-get($sizes, 'login-height');
 }
-
-// Login info section styles
+//contenedor registros parte uno
 .login-info {
   @include login-grid(1fr, start);
   position: relative;
-  background-color: #ff242429;
+//  background-color: #ff242429;
+  background-color:none;
   width: map-get($sizes, 'login-info-width');
   height: map-get($sizes, 'login-info-height');
   margin-left: map-get($spacing, 'sm');
   border-radius: map-get($sizes, 'border-radius-large');
   box-shadow: map-get($shadow-values, 'soft');
-  
+  z-index: 55;
   p {
     font-size: map-get($sizes, 'font-size-medium');
     color: map-get($colors, 'text-dark');
@@ -162,35 +160,30 @@ $sizes: (
   }
 }
 
-// Login navigation styles
 .login-nav {
   @include login-grid(repeat(3, 33%), space-between);
   align-items: start;
   margin-left: 10px;
 }
 
-// Stuffed section styles
 .stuffed {
   height: map-get($sizes, 'stuffed-height');
-  margin-top: 14rem;
+ // margin-top: 10rem;
 }
 
-// Login footer styles
 .login-footer {
   @include login-grid(repeat(4, 25%), center);
   align-items: center;
 }
 
-// Common login container styles
 @mixin login-container-common {
   background: linear-gradient(135deg, map-get($colors, 'primary'), map-get($colors, 'secondary'));
   text-align: center;
   opacity: 0;
   animation: fadeIn 1.2s ease-out forwards;
-  animation-delay: 4.3s;
+//  animation-delay: 4.3s;
 }
 
-// Login container grid styles
 .login-containerg {
   @include login-container-common;
   max-width: 90%;
@@ -205,7 +198,6 @@ $sizes: (
   }
 }
 
-// Login container styles
 .login-container {
   @include login-container-common;
   max-width: 90%;
@@ -214,19 +206,19 @@ $sizes: (
   border-radius: map-get($spacing, 'sm');
   padding: map-get($spacing, 'lg');
   box-shadow: map-get($shadow-values, 'soft');
-  transition-duration: map-get($transitions, 'long');
+ // transition-duration: map-get($transitions, 'long');
   
   &:hover {
-    transition-duration: map-get($transitions, 'long');
+   // transition-duration: map-get($transitions, 'long');
     box-shadow: 3px 5px 34px 7px map-get($colors, 'shadow-color');
     -webkit-box-shadow: 3px 5px 34px 7px map-get($colors, 'shadow-color');
     -moz-box-shadow: 3px 5px 34px 7px map-get($colors, 'shadow-color');
   }
 }
-
-// Login container left styles
+//contendor registro parte dos
 .login-containerl {
-  background-color: map-get($colors, 'black');
+ // background-color: map-get($colors, 'black');
+ background-color:   #0000006b;
   z-index: -10;
   height: 100%;
   margin: 0;
@@ -235,7 +227,6 @@ $sizes: (
   border-radius: 0 map-get($spacing, 'xs') map-get($spacing, 'xs') 0;
 }
 
-// Login title styles
 .login-title {
   font-size: map-get($sizes, 'font-size-large');
   font-weight: bold;
@@ -244,7 +235,6 @@ $sizes: (
   text-shadow: map-get($shadow-values, 'text');
 }
 
-// Form control styles
 .form-control {
   width: 90%;
   padding: 12px 15px;
@@ -259,13 +249,11 @@ $sizes: (
               box-shadow map-get($transitions, 'standard');
 }
 
-// Button group styles
 .button-group {
   @include flex-center;
   justify-content: space-between;
 }
 
-// Base button styles
 @mixin button-base {
   padding: 12px 20px;
   font-size: map-get($sizes, 'font-size-medium');
@@ -278,24 +266,21 @@ $sizes: (
               transform map-get($transitions, 'standard');
 }
 
-// Button styles
 .btn {
   @include button-base;
 }
 
-// Login button styles
 .login-btn {
   @include button-base;
-  background-color: map-get($colors, 'success');
+  background-color: map-get($colors, 'success'); 
+width: 8rem;
 }
 
-// Home button styles
 .home-btn {
   @include button-base;
   background-color: map-get($colors, 'info');
 }
 
-// Layered text styles
 .layered-text {
   --txt-cta: #{map-get($colors, 'white')};
   position: fixed;
@@ -307,10 +292,9 @@ $sizes: (
   height: auto;
   opacity: 1;
   animation: fadeOut 1.2s ease-out forwards;
-  animation-delay: 3s;
+ // animation-delay: 3s;
 }
 
-// Paragraph styles
 p {
   color: var(--txt-clr);
   font-family: "Bai Jamjuree", sans-serif;
@@ -319,7 +303,6 @@ p {
   line-height: 0.75;
 }
 
-// Shadow paragraph styles
 p.shadow {
   text-transform: uppercase;
   font-size: 6rem;
@@ -359,61 +342,24 @@ p.shadow {
   }
 }
 
-// Devotions styles
 .devotions {
   color: map-get($colors, 'white');
 }
 
-// Home container styles
-.home-container {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 20px;
-  text-align: center;
-  
-  @media (max-width: 768px) {
-    max-width: 90%;
-    margin: 30px auto;
-  }
-  
-  @media (max-width: 480px) {
-    max-width: 95%;
-    margin: 20px auto;
-    padding: 15px;
-  }
-}
 
-// General button styles
-button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  
-  &:hover {
-    background-color: #0056b3;
-  }
-  
-  @media (max-width: 480px) {
-    padding: 8px 16px;
-    font-size: 14px;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-}
 
-// Additional responsive adjustments
-@media (max-width: 768px) {
-  body {
-    font-size: 16px;
-  }
-}
 
-@media (max-width: 480px) {
-  body {
-    font-size: 14px;
-  }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

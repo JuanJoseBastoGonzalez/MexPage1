@@ -1,108 +1,54 @@
-/* import { Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, RouterModule],
-  template: `
-    <div class="login-container">
-      <h2>Login</h2>
-      <div class="form-group">
-        <input 
-          type="email" 
-          [(ngModel)]="email" 
-          placeholder="Ingresa tu correo"
-          class="form-control"
-        >
-      </div>
-      <div class="button-group">
-        <button (click)="onLogin()">Login</button>
-        <button (click)="goToHome()">Ir a Home</button>
-      </div>
-    </div>
-  `,
-  styles: [`
-    .login-container {
-      max-width: 400px;
-      margin: 50px auto;
-      padding: 20px;
-      text-align: center;
-    }
-    .form-group {
-      margin: 20px 0;
-    }
-    .form-control {
-      width: 100%;
-      padding: 8px;
-      margin: 8px 0;
-    }
-    .button-group {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-    }
-    button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-  `]
+  imports: [FormsModule, RouterModule, CommonModule],
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  // Property to store the user's email input
   email: string = '';
 
+  // Property to store a Bible quote (initialized as null)
+  citaBiblica: string | null = null;
+
+  // Constructor with Router dependency injection for navigation
   constructor(private router: Router) {}
 
+  /**
+   * Method called when the user attempts to log in
+   * It checks if an email is provided and navigates to the home page if valid
+   * need validate whith bakend data
+   */
   onLogin(): void {
     if (this.email) {
-      alert(`Iniciando sesión con el correo: ${this.email}`);
+      alert(`Logging in with email: ${this.email}`);
       this.router.navigate(['/home']);
     } else {
-      alert('Por favor, ingresa tu correo electrónico.');
+      alert('Please enter your email address.');
     }
   }
 
-  goToHome(): void {
-    this.router.navigate(['/home']);
+  /**
+   * Method to navigate to the registration page
+   * It displays an alert with the current email before navigation
+   */
+  goToRegister(): void {
+    alert(`Redirecting to register: ${this.email}`);
+    this.router.navigate(['/register']);
   }
-} */
-  import { Component } from '@angular/core';
-  import { Router } from '@angular/router';
-  import { FormsModule } from '@angular/forms';
-  import { RouterModule } from '@angular/router';
-  
-  @Component({
-    selector: 'app-login',
-    standalone: true,
-    imports: [FormsModule, RouterModule],
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'], // O './login.component.scss' si usas Sass
-  })
-  export class LoginComponent {
-    email: string = '';
-  
-    constructor(private router: Router) {}
-  
-    onLogin(): void {
-      if (this.email) {
-        alert(`Iniciando sesión con el correo: ${this.email}`);
-        this.router.navigate(['/home']);
-      } else {
-        alert('Por favor, ingresa tu correo electrónico.');
-      }
-    }
-  
-    goToHome(): void {
-      this.router.navigate(['/home']);
-    }
+
+  /**
+   * Lifecycle hook that runs when the component is initialized
+   * It sets a default Bible quote (in the future, this could be fetched from an API)
+   */
+  ngOnInit(): void {
+    this.citaBiblica = 'John 3:16 - "For God so loved the world..."';
   }
-  
+}
