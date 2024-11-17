@@ -1,0 +1,198 @@
+/* 
+ * Estilos principales para el componente de Login
+ * Incluye animaciones, efectos hover y diseño responsive
+ */
+
+/* Contenedor principal del login 
+ * Utiliza diseño flexible con gradiente y animación de entrada
+ */
+ .login-container {
+    max-width: 90%;          /* Ancho máximo responsivo */
+    width: 25rem;            /* Ancho base */
+    margin: 5vh auto;        /* Centrado vertical y horizontal */
+    background: linear-gradient(135deg, #6a11cb, #2575fc);  /* Gradiente diagonal */
+    border-radius: 1rem;     /* Bordes redondeados */
+    padding: 2rem;           /* Espaciado interno */
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);  /* Sombra suave */
+    text-align: center;
+    opacity: 0;              /* Inicialmente invisible */
+    animation: fadeIn 1.2s ease-out forwards;  /* Animación de entrada */
+    animation-delay: 5s;     /* Retraso de la animación */
+    transition-duration: 1.5s;
+}
+
+/* Efecto hover para el contenedor 
+ * Añade sombra con resplandor púrpura
+ */
+.login-container:hover {
+    transition-duration: 1.5s;
+    box-shadow: 3px 5px 34px 7px hsla(267, 100%, 55%, 0.656);
+    -webkit-box-shadow: 3px 5px 34px 7px hsla(267, 100%, 55%, 0.656);
+    -moz-box-shadow: 3px 5px 34px 7px hsla(267, 100%, 55%, 0.656);
+}
+
+/* Título del formulario de login 
+ * Estilo para el encabezado principal
+ */
+.login-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);  /* Sombra de texto */
+}
+
+/* Campos de entrada del formulario 
+ * Incluye efectos de hover y focus
+ */
+.form-control {
+    width: 90%;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #f9f9f9;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Grupo de botones 
+ * Layout flexible para múltiples botones
+ */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Estilos base para botones 
+ * Incluye efectos hover y animaciones
+ */
+.btn {
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+/* Variantes de botones */
+.login-btn {
+    background-color: #00c853;  /* Verde para acción principal */
+}
+
+.home-btn {
+    background-color: #0288d1;  /* Azul para navegación */
+}
+
+/* Animación de entrada principal 
+ * Usada para fade in de elementos
+ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilos para el texto en capas (layered text) 
+ * Incluye animación de salida y efectos 3D
+ */
+.layered-text {
+    --txt-cta: rgb(255, 255, 255);
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    display: grid;
+    place-content: center;
+    overflow: hidden;
+    height: auto;
+    opacity: 1;
+    animation: fadeOut 1.2s ease-out forwards;
+    animation-delay: 4s;
+}
+
+/* Animación de desvanecimiento 
+ * Usada para la salida de elementos
+ */
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+/* Estilos base del texto 
+ * Configuración general de tipografía
+ */
+p {
+    color: var(--txt-clr);
+    font-family: "Bai Jamjuree", sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 0.75;
+}
+
+/* Efecto de texto con sombra y perspectiva 
+ * Crea un efecto 3D con reflexión
+ */
+p.shadow {
+    text-transform: uppercase;
+    font-size: 6rem;
+    position: relative;
+    perspective: 100px;
+    font-weight: 800;
+    color: var(--txt-cta);
+}
+/* Efecto de texto con sombra y perspectiva 
+ * Crea un efecto 3D con reflexión
+ */
+ p.shadow {
+    text-transform: uppercase;
+    font-size: 6rem;
+    position: relative;
+    perspective: 100px;
+    font-weight: 800;
+    color: var(--txt-cta);
+}
+
+/* Pseudo-elemento para crear el reflejo del texto
+ * Usa transform para crear el efecto espejo y rotación
+ */
+p.shadow::before {
+    content: "PERSPECTIVE";  /* Texto que se reflejará */
+    position: absolute;
+    top: 100%;             /* Posicionado debajo del texto original */
+    left: 0;
+    right: 0;
+    scale: 1 -1;           /* Voltea el texto verticalmente */
+    opacity: 0.25;         /* Transparencia del reflejo */
+    color: white;
+    z-index: -1;
+    transform: rotateX(-40deg) scaleX(123%); /* Rotación 3D y estiramiento horizontal */
+}
+
+/* Pseudo-elemento para el degradado del reflejo
+ * Crea el efecto de desvanecimiento
+ */
+p.shadow::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: -50%;
+    width: 200%;           /* Ancho extendido para cubrir todo el reflejo */
+    height: 150%;
+    background: linear-gradient(to bottom, transparent, var(--bg-clr) 85%); /* Degradado para desvanecer */
+}
